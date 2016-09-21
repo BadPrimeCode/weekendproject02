@@ -19,17 +19,37 @@ $(document).ready(function() {
         students = data.students;
         console.log(students);
 
-        var i = 0;
-        setInterval(function() {
-            var currentStudent = students[i++];
-            $('#studentName').html('<span><p><b>' + students[i].first_name + ' ' + students[i].last_name + '</b></p></span>');
-            $('#studentDesc').html('<span><p>' + students[i].info + '</p></span>');
-            if(i >= students.length) currentStudent = 0;
-        }, 100);
-        var prevButton= $('<button id="prevButton">Prev</button>');
-        var nextButton= $('<button id="nextButton">Next</button>');
+          var prevButton= $('<button id="prevButton">Prev</button>');
+          var nextButton= $('<button id="nextButton">Next</button>');
             $('.buttons').prepend(prevButton);
             $('.buttons').append(nextButton);
+
+            var i = 0;
+            // setInterval(function() {
+            var currentStudent = students[i];
+
+            $('#studentName').html('<p><b>' + currentStudent.first_name + ' ' + currentStudent.last_name + '</b></p>');
+            $('#studentDesc').html('<p>' + currentStudent.info + '</p>');
+
+            $('#prevButton').on('click', function() {
+              if(currentStudent <= data.students.length && currentStudent > 0){
+                currentStudent--;
+                console.log(currentStudent);
+              } else if (currentStudent === 0) {
+                currentStudent = data.students.length;
+                console.log(currentStudent);
+              }
+            });
+
+            $('#nextButton').on('click', function() {
+              if(currentStudent < data.students.length){
+                currentStudent++;
+                console.log(currentStudent);
+              } else {
+                currentStudent = 0;
+                console.log(currentStudent);
+              }
+            });
               }, // end ajax success
 
                 statusCode: {
@@ -39,7 +59,6 @@ $(document).ready(function() {
                 } // end statusCode
 
             }); // end ajax object
-
     }); // end click start button
 }); //end document ready
 
