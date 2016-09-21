@@ -19,29 +19,36 @@ $(document).ready(function() {
         students = data.students;
         console.log(students);
 
-            var prevButton= $('<button id="prevButton">Prev</button>');
-            var nextButton= $('<button id="nextButton">Next</button>');
-                $('.buttons').prepend(prevButton);
-                $('.buttons').append(nextButton);
+          var prevButton= $('<button id="prevButton">Prev</button>');
+          var nextButton= $('<button id="nextButton">Next</button>');
+            $('.buttons').prepend(prevButton);
+            $('.buttons').append(nextButton);
 
-                var i = 0;
-                // setInterval(function() {
-                    var currentStudent = students[i];
-
-                $('body').on('click', '#prevButton', function() {
-                  currentStudent -=1;
-                });
-
-                $('body').on('click', '#nextButton', function() {
-                  currentStudent +=1;
-                });
+            var i = 0;
+            // setInterval(function() {
+            var currentStudent = students[i];
 
             $('#studentName').html('<p><b>' + currentStudent.first_name + ' ' + currentStudent.last_name + '</b></p>');
             $('#studentDesc').html('<p>' + currentStudent.info + '</p>');
-        //     if(i >= students.length) currentStudent = 0;
-        // }, 100);
 
+            $('#prevButton').on('click', function() {
+              if(currentStudent <= students.length && currentStudent > 0){
+                currentStudent--;
+                console.log(currentStudent);
+              }
+            });
 
+            $('#nextButton').on('click', function() {
+              if(currentStudent < students.length){
+                currentStudent++;
+                $('.studentCount').html('<p>' + currentStudent[i] + ' / ' + students.length + '</p>');
+                console.log(currentStudent);
+              } else {
+                currentStudent = 0;
+                $('.studentCount').html('<p>' + currentStudent[i] + ' / ' + students.length + '</p>');
+                console.log(currentStudent);
+              }
+            });
 
               }, // end ajax success
 
