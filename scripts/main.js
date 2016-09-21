@@ -32,20 +32,21 @@ $(document).ready(function() {
             $('#studentDesc').html('<p>' + currentStudent.info + '</p>');
 
             $('#prevButton').on('click', function() {
-              if(currentStudent <= students.length && currentStudent > 0){
+              if(currentStudent <= data.students.length && currentStudent > 0){
                 currentStudent--;
+                console.log(currentStudent);
+              } else if (currentStudent === 0) {
+                currentStudent = data.students.length;
                 console.log(currentStudent);
               }
             });
 
             $('#nextButton').on('click', function() {
-              if(currentStudent < students.length){
+              if(currentStudent < data.students.length){
                 currentStudent++;
-                $('.studentCount').html('<p>' + currentStudent[i] + ' / ' + students.length + '</p>');
                 console.log(currentStudent);
               } else {
                 currentStudent = 0;
-                $('.studentCount').html('<p>' + currentStudent[i] + ' / ' + students.length + '</p>');
                 console.log(currentStudent);
               }
             });
@@ -58,7 +59,7 @@ $(document).ready(function() {
                         } // end 404
                 } // end statusCode
 
-            }); // end ajax object
+        }); // end ajax
 
     }); // end click start button
 
