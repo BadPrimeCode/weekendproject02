@@ -8,7 +8,7 @@ var students = [];
 $(document).ready(function() {
   $('body').on('click', '#startButton', function() {
     console.log("start button clicked");
-
+    $('#startButton').hide();
     $.ajax({
       url: "http://devjana.net/pi/pi_students.json",
       datatype: "JSON",
@@ -19,13 +19,29 @@ $(document).ready(function() {
         students = data.students;
         console.log(students);
 
-        var i = 0;
-        setInterval(function() {
-            var currentStudent = students[i++];
-            $('#studentName').html('<span><p><b>' + students[i].first_name + ' ' + students[i].last_name + '</b></p></span>');
-            $('#studentDesc').html('<span><p>' + students[i].info + '</p></span>');
-            if(i >= students.length) currentStudent = 0;
-        }, 100);
+            var prevButton= $('<button id="prevButton">Prev</button>');
+            var nextButton= $('<button id="nextButton">Next</button>');
+                $('.buttons').prepend(prevButton);
+                $('.buttons').append(nextButton);
+
+                var i = 0;
+                // setInterval(function() {
+                    var currentStudent = students[i];
+
+                $('body').on('click', '#prevButton', function() {
+                  currentStudent -=1;
+                });
+
+                $('body').on('click', '#nextButton', function() {
+                  currentStudent +=1;
+                });
+
+            $('#studentName').html('<p><b>' + currentStudent.first_name + ' ' + currentStudent.last_name + '</b></p>');
+            $('#studentDesc').html('<p>' + currentStudent.info + '</p>');
+        //     if(i >= students.length) currentStudent = 0;
+        // }, 100);
+
+
 
               }, // end ajax success
 
@@ -36,7 +52,9 @@ $(document).ready(function() {
                 } // end statusCode
 
             }); // end ajax object
+
     }); // end click start button
+
 }); //end document ready
 
 
