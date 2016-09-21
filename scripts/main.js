@@ -8,7 +8,7 @@ var students = [];
 $(document).ready(function() {
   $('body').on('click', '#startButton', function() {
     console.log("start button clicked");
-
+    $('#startButton').hide();
     $.ajax({
       url: "http://devjana.net/pi/pi_students.json",
       datatype: "JSON",
@@ -26,7 +26,10 @@ $(document).ready(function() {
             $('#studentDesc').html('<span><p>' + students[i].info + '</p></span>');
             if(i >= students.length) currentStudent = 0;
         }, 100);
-
+        var prevButton= $('<button id="prevButton">Prev</button>');
+        var nextButton= $('<button id="nextButton">Next</button>');
+            $('.buttons').prepend(prevButton);
+            $('.buttons').append(nextButton);
               }, // end ajax success
 
                 statusCode: {
@@ -36,6 +39,7 @@ $(document).ready(function() {
                 } // end statusCode
 
             }); // end ajax object
+
     }); // end click start button
 }); //end document ready
 
