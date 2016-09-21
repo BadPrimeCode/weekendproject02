@@ -24,7 +24,7 @@ $('body').on('click', '#startButton', function(){
               $('#studentDesc').html('<p>' + students[i].info + '</p>');
               showStudents();
             }
-          }
+          };
          }, // end success
 
        statusCode: {
