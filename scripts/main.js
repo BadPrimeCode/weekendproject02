@@ -27,14 +27,6 @@ $(document).ready(function() {
             if(i >= students.length) currentStudent = 0;
         }, 100);
 
-
-          // var showStudents = function() {
-          //     console.log("in showStudents");
-          //     for (var i = 0; i < students.length; i++) {
-          //
-          //     } //end for loop
-          //   }; //end showStudents
-          //   showStudents();
               }, // end ajax success
 
                 statusCode: {
@@ -42,7 +34,6 @@ $(document).ready(function() {
                             alert("error connecting to server. perhaps try again?");
                         } // end 404
                 } // end statusCode
-
 
             }); // end ajax object
     }); // end click start button
